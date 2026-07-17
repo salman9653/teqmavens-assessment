@@ -12,7 +12,7 @@ interface RippleProps {
 
 export const Ripple = React.memo(function Ripple({
   mainCircleSize = 380,
-  mainCircleOpacity = 0.5,
+  mainCircleOpacity = 0.6,
   numCircles = 4,
   spacing = 300,
   className,
@@ -43,18 +43,18 @@ export const Ripple = React.memo(function Ripple({
       `}</style>
       {Array.from({ length: numCircles }, (_, i) => {
         const size = mainCircleSize + i * spacing
-        const opacity = mainCircleOpacity - i * 0.08
+        const opacity = mainCircleOpacity - i * 0.1
         const animationDelay = `${i * 0.4}s`
 
         return (
           <div
             key={i}
-            className="magic-animate-ripple absolute left-1/2 rounded-full border border-zinc-400/50 dark:border-white/40"
+            className="magic-animate-ripple absolute left-1/2 rounded-full border-[1.5px] border-zinc-500/80 dark:border-white/60"
             style={
               {
                 width: `${size}px`,
                 height: `${size}px`,
-                opacity: Math.max(opacity, 0.1),
+                opacity: Math.max(opacity, 0.15),
                 animationDelay: animationDelay,
                 top: "48%", // Centers with the car dashboard offset
                 transform: "translate(-50%, -50%)",
