@@ -1,6 +1,6 @@
 import { motion } from "framer-motion"
 import carImage from "@/assets/car_dashboard.png"
-import { AnimatedCounter } from "@/components/AnimatedCounter"
+import { NumberTicker } from "@/components/ui/NumberTicker"
 import { calculateTelemetryMetrics } from "@/lib/telemetry"
 import type { DriveMode, LapData } from "@/lib/types"
 
@@ -44,7 +44,7 @@ function MetricColumn({ metrics, alignment }: MetricColumnProps) {
             <div
               className={`flex items-baseline justify-center gap-1 font-mono text-2xl font-extrabold tracking-tight text-foreground sm:text-3xl md:text-4xl ${valueAlignment}`}
             >
-              <AnimatedCounter value={value} decimals={decimals} duration={1} />
+              <NumberTicker value={value} decimals={decimals} />
               {unit && (
                 <span className="font-sans text-xs font-bold text-foreground/50 md:text-sm">
                   {unit}

@@ -30,33 +30,38 @@ export function AppHeader({ activeView, theme, onThemeToggle }: AppHeaderProps) 
           </motion.div>
         )}
 
-        <motion.button
+        <button
           type="button"
           onClick={onThemeToggle}
-          whileHover={{ scale: 1.08, boxShadow: "0 0 20px rgba(128,128,128,0.3)" }}
-          whileTap={{ scale: 0.92 }}
-          className={`group flex h-10 w-20 cursor-pointer items-center justify-between gap-3 rounded-full border px-3 shadow-md transition-all duration-300 select-none ${
-            isDarkTheme
-              ? "border-zinc-800/80 bg-zinc-950/80"
-              : "border-zinc-300 bg-zinc-200/90"
-          }`}
+          className="relative flex h-10 w-20 cursor-pointer items-center justify-between rounded-full border border-zinc-300 bg-zinc-200/60 p-1 shadow-md dark:border-zinc-800/80 dark:bg-zinc-950/80 select-none overflow-hidden"
           aria-label={`Switch to ${isDarkTheme ? "light" : "dark"} theme`}
         >
-          <Sun
-            className={`h-5 w-5 transition-all duration-300 ${
-              isDarkTheme
-                ? "text-zinc-600 opacity-40 group-hover:opacity-60"
-                : "scale-105 text-zinc-900 opacity-100"
-            }`}
+          {/* Sliding active indicator */}
+          <motion.div
+            layout
+            transition={{ type: "spring", stiffness: 350, damping: 25 }}
+            className="absolute top-1 bottom-1 w-8 rounded-full bg-white dark:bg-zinc-800 shadow-md"
+            style={{
+              left: isDarkTheme ? "38px" : "4px",
+              boxShadow: isDarkTheme
+                ? "0 0 12px var(--brand-glow)"
+                : "0 0 8px rgba(0, 0, 0, 0.1)"
+            }}
           />
-          <Moon
-            className={`h-5 w-5 transition-all duration-300 ${
-              isDarkTheme
-                ? "scale-105 text-white opacity-100 drop-shadow-[0_0_6px_rgba(255,255,255,0.5)]"
-                : "text-zinc-400 opacity-40 group-hover:opacity-65"
-            }`}
-          />
-        </motion.button>
+          
+          <div className="relative z-10 flex w-full items-center justify-between px-2.5">
+            <Sun
+              className={`h-4.5 w-4.5 transition-colors duration-300 ${
+                isDarkTheme ? "text-zinc-500/60" : "text-amber-600 dark:text-amber-500 font-bold"
+              }`}
+            />
+            <Moon
+              className={`h-4.5 w-4.5 transition-colors duration-300 ${
+                isDarkTheme ? "text-indigo-400" : "text-zinc-500/40"
+              }`}
+            />
+          </div>
+        </button>
       </div>
     </header>
   )

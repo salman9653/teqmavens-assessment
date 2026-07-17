@@ -14,6 +14,7 @@ import { SettingsView } from "@/components/SettingsView"
 import { ShareModal } from "@/components/ShareModal"
 import { PolicyModal } from "@/components/PolicyModal"
 import { Toast } from "@/components/Toast"
+import { SmoothCursor } from "@/components/SmoothCursor"
 import { useDocumentAppearance } from "@/hooks/useDocumentAppearance"
 import { useDownloadIndicator } from "@/hooks/useDownloadIndicator"
 import {
@@ -183,6 +184,7 @@ export default function App() {
       <ShareModal isOpen={isShareOpen} onClose={() => setIsShareOpen(false)} />
       <PolicyModal isOpen={isPolicyOpen} onClose={() => setIsPolicyOpen(false)} />
       <Toast isVisible={downloadState === "completed"} message="Telemetry downloaded successfully" />
+      <SmoothCursor />
 
       <footer className="z-10 hidden w-full py-4 text-center font-mono text-[9px] tracking-widest text-foreground/20 lg:block">
         © 2026 NEXTCAR DYNAMICS. ALL RIGHTS RESERVED.
